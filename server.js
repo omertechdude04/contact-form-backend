@@ -17,16 +17,15 @@ app.post('/send', async (req, res) => {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
-    },
-    secure: false
+      user: 'sellusyourlandnow@gmail.com',
+      pass: 'gvgx mara crlu zpyf' // App password, not your Gmail password
+    }
   });
 
   const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: process.env.EMAIL_USER,
-    subject: '📬 New Lead from Sell Us Your Land Contact Form',
+    from: 'sellusyourlandnow@gmail.com',
+    to: 'sellusyourlandnow@gmail.com',
+    subject: '📬 New Message from SellUsYourLand Contact Form',
     replyTo: email,
     text: `
   You received a new message through your website contact form.
