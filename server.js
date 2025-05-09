@@ -41,7 +41,7 @@ ${message}
 
 ———
 
-This message was sent via the SellUsYourLand.com contact page.
+This message was sent via the SellUsYourLandNow.com contact page.
 To respond, simply click "Reply".
     `
   };
