@@ -4,9 +4,22 @@ const nodemailer = require('nodemailer');
 const cors = require('cors');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-app.use(cors());
+app.get('/ping', (req, res) => res.send('pong'));
+
+
+app.use(express.static('public'));
+const allowedOrigins = ["https://sellusyourlandnow.com", "https://yourfrontend.github.io"]; // Add your frontend URLs here
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+}));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -18,7 +31,8 @@ app.post('/send', async (req, res) => {
     auth: {
       user: process.env.EMAIL_USER,
       pass: process.env.EMAIL_PASS
-    }    
+    },
+    secure: false       
   });
 
   const mailOptions = {
@@ -41,7 +55,7 @@ ${message}
 
 ———
 
-This message was sent via the SellUsYourLandNow.com contact page.
+This message was sent via the SellUsYourLand.com contact page.
 To respond, simply click "Reply".
     `
   };
